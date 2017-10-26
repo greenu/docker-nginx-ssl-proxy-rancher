@@ -25,7 +25,16 @@ View in GitHub [codedevote/docker-nginx-ssl-proxy-rancher](https://github.com/co
 * __RANCHER\_CONTAINER_NAME__
  * default: rancher
 
+To fix Rancher UI on non-standard ports: [see issue here](https://github.com/rancher/rancher/issues/7419)
+
+* __LISTEN\_PORT__
+ * default: 80
+
+* __LISTEN\_PORT\_SSL__
+ * default: 443
  
+
+
 ## Running codedevote/nginx-ssl-proxy-rancher container
 All the information on running the base image also applies to this container. 
 
@@ -48,4 +57,14 @@ To run this image you can use the following command:
     -v $EXT_DIR:/etc/nginx/external/ \
     codedevote/nginx-ssl-proxy-rancher
 
+To run on custom ports:
 
+    docker run -d \
+    -p 8888:8888 -p 8443:8443 \
+    -e 'RANCHER_URL=rancher.example.org' \
+    -e 'RANCHER_CONTAINER_NAME=rancher' \
+    -e 'RANCHER_PORT=8080' \
+    -e 'LISTEN_PORT=8888' \
+    -e 'LISTEN_PORT_SSL=8443' \
+    -v $EXT_DIR:/etc/nginx/external/ \
+    greenu/nginx-ssl-proxy-rancher

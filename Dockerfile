@@ -5,6 +5,8 @@ MAINTAINER codedevote
 ENV RANCHER_URL localhost
 ENV RANCHER_PORT 8080
 ENV RANCHER_CONTAINER_NAME rancher
+ENV LISTEN_PORT 80
+ENV LISTEN_PORT_SSL 443
 
 # add nginx config for rancher server
 ADD rancher.conf /etc/nginx/conf.d/rancher.conf
